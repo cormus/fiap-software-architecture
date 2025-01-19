@@ -34,13 +34,11 @@ public class Produto {
 
     private Double valor;
 
-    @Column(name = "data_exclusao")
-    private LocalDateTime dataExclusao;
-
     public Produto(ProdutoCadastroDTO produto){
 
         this.nome = produto.nome();
         this.valor = produto.valor();
+        this.idCategoria = produto.idCategoria();
 
     }
 

@@ -20,14 +20,14 @@ public class SpringDocConfiguration {
                         new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT"))
                 ).info(
                         new Info()
-                        .title("cormus.com.br API")
-                        .description("API Rest da aplicação Cormus.")
+                        .title("Gestão Lanhonete")
+                        .description("API para gestão depedidos de uma lanchonete")
                         .contact(new Contact()
                                 .name("Time Backend")
-                                .email("contato@cormus.com.br"))
+                                .email("alexprodutor.com@gmail.com"))
                         .license(new License()
                                 .name("Apache 2.0")
-                                .url("contato@cormus.com.br/licenca"))
+                                .url("licenca"))
                 );
     }
 

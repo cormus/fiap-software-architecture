@@ -8,11 +8,11 @@ public record ProdutoAtualizacaoDTO(
     @NotNull
     Long id,
 
-    @NotBlank
     String nome,
 
-    @NotNull
-    Double valor
+    Double valor,
+
+    Long idCategoria
 
 ) {
 

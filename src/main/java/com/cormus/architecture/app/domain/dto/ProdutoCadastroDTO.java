@@ -9,7 +9,10 @@ public record ProdutoCadastroDTO(
         String nome,
 
         @NotNull
-        Double valor
+        Double valor,
+
+        @NotNull
+        Long idCategoria
 
 ) {
 
