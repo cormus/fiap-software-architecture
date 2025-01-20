@@ -2,16 +2,11 @@ package com.cormus.architecture.app.domain.entity;
 
 import com.cormus.architecture.app.domain.dto.ProdutoAtualizacaoDTO;
 import com.cormus.architecture.app.domain.dto.ProdutoCadastroDTO;
-import com.cormus.architecture.app.domain.dto.UsuarioAtualizacaoDto;
-import com.cormus.architecture.app.domain.dto.UsuarioCadastroDto;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "produto")
@@ -33,6 +28,10 @@ public class Produto {
     private String nome;
 
     private Double valor;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProdutoImagem> imagens = new ArrayList<>();
 
     public Produto(ProdutoCadastroDTO produto){
 
@@ -57,5 +56,15 @@ public class Produto {
     public void atualizar(ProdutoAtualizacaoDTO produtoDTO){
         this.nome = produtoDTO.nome();
         this.valor = produtoDTO.valor();
+    }
+
+    public void addImagem(ProdutoImagem item) {
+        item.setProduto(this);
+        this.imagens.add(item);
+    }
+
+    public void removeImagem(ProdutoImagem imagem) {
+        imagens.remove(imagem);
+        imagem.setProduto(null);
     }
 }

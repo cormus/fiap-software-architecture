@@ -21,7 +21,6 @@ Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação e
     - Mysql Connector
     - Springdoc
 - Banco de Dados: MySql
-- Banco de Dados: MySql
 - Containerização: Docker
 - Documentação da API: Swagger/OpenAPI
 - Sistema de Gerenciamento de Base de Dados Relacional (SGBDR): phpMyAdmin

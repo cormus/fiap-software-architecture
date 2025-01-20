@@ -2,6 +2,7 @@ package com.cormus.architecture.app.controller;
 
 import com.cormus.architecture.app.domain.dto.*;
 import com.cormus.architecture.app.domain.entity.Produto;
+import com.cormus.architecture.app.domain.entity.ProdutoImagem;
 import com.cormus.architecture.app.domain.entity.Usuario;
 import com.cormus.architecture.app.domain.repository.ProdutoRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -35,6 +36,13 @@ public class ProdutoController {
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid ProdutoCadastroDTO produtoDTO, UriComponentsBuilder uriBuilder){
         Produto produto = new Produto(produtoDTO);
+
+        for (ProdutoImagemDTO imagemDto: produtoDTO.imagens()){
+            ProdutoImagem imagem = new ProdutoImagem();
+            imagem.setImagem(imagemDto.imagem());
+            produto.addImagem(imagem);
+        }
+
         produtoRepository.save(produto);
         return ResponseEntity.ok(produto);
     }
@@ -64,7 +72,7 @@ public class ProdutoController {
         } else {
             throw new RuntimeException("Produto com ID " + id + " não encontrado!");
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Produto excluído com sucesso");
     }
 
 }
