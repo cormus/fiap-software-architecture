@@ -67,7 +67,7 @@ https://miro.com/app/board/uXjVLB4ecdM=/
 
 ###  Vídeo de apresentação
 
-https://miro.com/app/board/uXjVLB4ecdM=/
+https://drive.google.com/file/d/1IhN1DiGmlfhD6Fm65LS9tnTqPBxo4LDZ/view
 
 # Autores
 
