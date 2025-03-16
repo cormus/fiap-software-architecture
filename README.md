@@ -39,7 +39,7 @@ Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação e
 
 `cd fiap-software-architecture`
 
-`dockcer-compose up`
+`docker-compose up`
 
 # Acessos
 
