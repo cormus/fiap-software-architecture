@@ -1,12 +1,10 @@
 package com.cormus.architecture.app.controller;
 
-import com.cormus.architecture.app.domain.dto.ClienteCadastroDTO;
-import com.cormus.architecture.app.domain.dto.ClienteIdentificacaoDTO;
-import com.cormus.architecture.app.domain.dto.ProdutoCadastroDTO;
-import com.cormus.architecture.app.domain.dto.UsuarioDetalhamentoDto;
-import com.cormus.architecture.app.domain.entity.Produto;
-import com.cormus.architecture.app.domain.entity.Usuario;
-import com.cormus.architecture.app.domain.repository.UsuarioRepository;
+import com.cormus.architecture.app.infra.common.dto.ClienteCadastroDTO;
+import com.cormus.architecture.app.infra.common.dto.ClienteIdentificacaoDTO;
+import com.cormus.architecture.app.infra.common.dto.UsuarioDetalhamentoDto;
+import com.cormus.architecture.app.infra.persistence.jpa.entity.Usuario;
+import com.cormus.architecture.app.infra.persistence.jpa.repository.UsuarioRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
 @RestController

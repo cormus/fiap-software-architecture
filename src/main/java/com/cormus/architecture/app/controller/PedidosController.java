@@ -1,8 +1,7 @@
 package com.cormus.architecture.app.controller;
 
-import com.cormus.architecture.app.domain.entity.Pedido;
-import com.cormus.architecture.app.domain.entity.Produto;
-import com.cormus.architecture.app.domain.repository.PedidoRepository;
+import com.cormus.architecture.app.infra.persistence.jpa.entity.Pedido;
+import com.cormus.architecture.app.infra.persistence.jpa.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

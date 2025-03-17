@@ -1,7 +1,7 @@
 package com.cormus.architecture.app.controller;
 
-import com.cormus.architecture.app.domain.dto.AutenticacaoDto;
-import com.cormus.architecture.app.domain.entity.Usuario;
+import com.cormus.architecture.app.infra.common.dto.AutenticacaoDto;
+import com.cormus.architecture.app.infra.persistence.jpa.entity.Usuario;
 import com.cormus.architecture.app.infra.security.AutenticacaoTokenDto;
 import com.cormus.architecture.app.infra.security.SecurityTokenService;
 import jakarta.validation.Valid;

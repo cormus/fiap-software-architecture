@@ -1,14 +1,12 @@
 package com.cormus.architecture.app.controller;
 
-import com.cormus.architecture.app.domain.dto.CheckoutDetalharDTO;
-import com.cormus.architecture.app.domain.dto.PedidoCadastroDTO;
-import com.cormus.architecture.app.domain.dto.PedidoItemCadastroDTO;
-import com.cormus.architecture.app.domain.dto.ProdutoCadastroDTO;
-import com.cormus.architecture.app.domain.entity.Pedido;
-import com.cormus.architecture.app.domain.entity.PedidoItem;
-import com.cormus.architecture.app.domain.entity.Produto;
+import com.cormus.architecture.app.infra.common.dto.CheckoutDetalharDTO;
+import com.cormus.architecture.app.infra.common.dto.PedidoCadastroDTO;
+import com.cormus.architecture.app.infra.common.dto.PedidoItemCadastroDTO;
+import com.cormus.architecture.app.infra.persistence.jpa.entity.Pedido;
+import com.cormus.architecture.app.infra.persistence.jpa.entity.PedidoItem;
 import com.cormus.architecture.app.domain.enumeration.PedidoStatusEnum;
-import com.cormus.architecture.app.domain.repository.PedidoRepository;
+import com.cormus.architecture.app.infra.persistence.jpa.repository.PedidoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Controller
 @RestController
