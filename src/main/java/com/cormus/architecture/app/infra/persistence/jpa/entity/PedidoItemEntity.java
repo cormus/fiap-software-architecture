@@ -12,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class PedidoItem {
+public class PedidoItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +25,13 @@ public class PedidoItem {
     @ManyToOne
     @JoinColumn(name = "id_pedido", nullable = false)
     @JsonBackReference
-    private Pedido pedido;
+    private PedidoEntity pedido;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_produto", nullable = false)
     private ProdutoEntity produto;
 
-    public PedidoItem(PedidoItemCadastroDTO item) {
+    public PedidoItemEntity(PedidoItemCadastroDTO item) {
         this.quantidade = item.quantidade();
         this.valor = item.valor();
         this.produto = item.produto();

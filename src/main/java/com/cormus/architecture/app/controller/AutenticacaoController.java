@@ -1,7 +1,7 @@
 package com.cormus.architecture.app.controller;
 
 import com.cormus.architecture.app.infra.common.dto.AutenticacaoDto;
-import com.cormus.architecture.app.infra.persistence.jpa.entity.Usuario;
+import com.cormus.architecture.app.infra.persistence.jpa.entity.UsuarioEntity;
 import com.cormus.architecture.app.infra.security.AutenticacaoTokenDto;
 import com.cormus.architecture.app.infra.security.SecurityTokenService;
 import jakarta.validation.Valid;
@@ -30,7 +30,7 @@ public class AutenticacaoController {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(autenticacao.login(), autenticacao.senha());
         Authentication autentication = authenticationManager.authenticate(authenticationToken);
 
-        String jwtToken = securityTokenService.gerarToken((Usuario) autentication.getPrincipal());
+        String jwtToken = securityTokenService.gerarToken((UsuarioEntity) autentication.getPrincipal());
 
         return ResponseEntity.ok(new AutenticacaoTokenDto(jwtToken));
     }

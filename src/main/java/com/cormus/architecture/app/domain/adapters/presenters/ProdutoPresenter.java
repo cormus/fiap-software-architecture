@@ -7,15 +7,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProdutoPresenter {
-    private Long id;
-
-    private Long idCategoria;
-
-    private String nome;
-
-    private Double valor;
-
-    private LocalDateTime dataExclusao;
 
     public static ProdutoCadastradoDTO bind(Produto produto){
         return new ProdutoCadastradoDTO(produto.getId(), produto.getIdCategoria(), produto.getNome(), produto.getValor());

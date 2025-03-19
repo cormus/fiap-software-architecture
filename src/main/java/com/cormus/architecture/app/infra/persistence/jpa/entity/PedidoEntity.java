@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Pedido {
+public class PedidoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,18 +34,18 @@ public class Pedido {
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<PedidoItem> itens = new ArrayList<>();
+    private List<PedidoItemEntity> itens = new ArrayList<>();
 
-    public Pedido(Pedido pedido) {
+    public PedidoEntity(PedidoEntity pedido) {
     }
 
     // Métodos auxiliares para manter a consistência da relação bidirecional
-    public void addItem(PedidoItem item) {
+    public void addItem(PedidoItemEntity item) {
         item.setPedido(this); // Define o pedido para o item
         this.itens.add(item); // Adiciona o item à lista
     }
 
-    public void removeItem(PedidoItem item) {
+    public void removeItem(PedidoItemEntity item) {
         item.setPedido(null); // Remove a referência ao pedido
         this.itens.remove(item);
     }

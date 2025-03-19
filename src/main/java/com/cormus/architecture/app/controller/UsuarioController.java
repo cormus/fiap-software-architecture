@@ -4,7 +4,7 @@ import com.cormus.architecture.app.infra.common.dto.UsuarioAtualizacaoDto;
 import com.cormus.architecture.app.infra.common.dto.UsuarioCadastroDto;
 import com.cormus.architecture.app.infra.common.dto.UsuarioDetalhamentoDto;
 import com.cormus.architecture.app.infra.common.dto.UsuarioListaDto;
-import com.cormus.architecture.app.infra.persistence.jpa.entity.Usuario;
+import com.cormus.architecture.app.infra.persistence.jpa.entity.UsuarioEntity;
 import com.cormus.architecture.app.infra.persistence.jpa.repository.UsuarioRepository;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -51,7 +51,7 @@ public class UsuarioController {
     @PostMapping
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid UsuarioCadastroDto usuario, UriComponentsBuilder uriBuilder){
-        Usuario usuarioEnt = new Usuario(usuario);
+        UsuarioEntity usuarioEnt = new UsuarioEntity(usuario);
 
         String password = passwordEncoder.encode(usuario.senha());
         usuarioEnt.setSenha(password);
@@ -67,7 +67,7 @@ public class UsuarioController {
     @PutMapping
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid UsuarioAtualizacaoDto usuario){
-        Usuario usuarioEnt = repository.getReferenceById(usuario.getId());
+        UsuarioEntity usuarioEnt = repository.getReferenceById(usuario.getId());
         usuarioEnt.atualizar(usuario);
         //Code return code 200 OK
         return ResponseEntity.ok(new UsuarioDetalhamentoDto(usuarioEnt));
@@ -76,7 +76,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity detalhar(@PathVariable Long id){
-        Usuario usuarioEnt = repository.getReferenceById(id);
+        UsuarioEntity usuarioEnt = repository.getReferenceById(id);
         return ResponseEntity.ok(new UsuarioDetalhamentoDto(usuarioEnt));
     }
 

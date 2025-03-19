@@ -1,7 +1,8 @@
 package com.cormus.architecture.app.controller;
 
-import com.cormus.architecture.app.infra.persistence.jpa.entity.Pedido;
-import com.cormus.architecture.app.infra.persistence.jpa.repository.PedidoRepository;
+import com.cormus.architecture.app.domain.adapters.controller.PedidoController;
+import com.cormus.architecture.app.domain.common.dto.PedidoCadastradoDTO;
+import com.cormus.architecture.app.infra.persistence.jpa.datasource.PedidoDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,15 +15,15 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping(value = "api/v1/pedido")
-public class PedidosController {
+public class PedidoRestController {
 
     @Autowired
-    PedidoRepository pedidoRepository;
+    PedidoDataSource pedidoDataSource;
 
     @GetMapping
-    public ResponseEntity<List<Pedido>> listar(){
-        List<Pedido> pedidos = pedidoRepository.findAll();
-        return ResponseEntity.ok(pedidos);
+    public ResponseEntity<List<PedidoCadastradoDTO>> listar(){
+        PedidoController pedidoController = new PedidoController(this.pedidoDataSource);
+        return ResponseEntity.ok(pedidoController.listar());
     }
 
 }

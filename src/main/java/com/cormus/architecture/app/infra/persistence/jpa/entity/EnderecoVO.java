@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Embeddable
 @NoArgsConstructor
 @AllArgsConstructor
-public class Endereco {
+public class EnderecoVO {
     private String logradouro;
     private String numero;
     private String complemento;
@@ -19,7 +19,7 @@ public class Endereco {
     private String uf;
     private String cidade;
 
-    public Endereco(EnderecoDto endereco) {
+    public EnderecoVO(EnderecoDto endereco) {
         this.logradouro = endereco.logradouro();
         this.numero = endereco.numero();
         this.complemento = endereco.complemento();

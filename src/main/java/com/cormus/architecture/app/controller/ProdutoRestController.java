@@ -3,10 +3,9 @@ package com.cormus.architecture.app.controller;
 import com.cormus.architecture.app.domain.adapters.controller.ProdutoController;
 import com.cormus.architecture.app.domain.common.dto.ProdutoCadastradoDTO;
 import com.cormus.architecture.app.domain.common.dto.ProdutoCadastroDTO;
-import com.cormus.architecture.app.domain.entity.Produto;
 import com.cormus.architecture.app.infra.common.dto.ProdutoAtualizacaoRequest;
 import com.cormus.architecture.app.infra.common.dto.ProdutoCadastroRequest;
-import com.cormus.architecture.app.infra.persistence.jpa.gateway.ProdutoDataSource;
+import com.cormus.architecture.app.infra.persistence.jpa.datasource.ProdutoDataSource;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +22,11 @@ import java.util.List;
 public class ProdutoRestController {
 
     @Autowired
-    ProdutoDataSource produtoRepository;
+    ProdutoDataSource produtoDataSource;
 
     @GetMapping
     public ResponseEntity<List<ProdutoCadastradoDTO>> listar(){
-        ProdutoController produtoController = new ProdutoController(this.produtoRepository);
+        ProdutoController produtoController = new ProdutoController(this.produtoDataSource);
         List<ProdutoCadastradoDTO> produtos = produtoController.listar();
         return ResponseEntity.ok(produtos);
     }
@@ -36,7 +35,7 @@ public class ProdutoRestController {
     @Transactional
     public ResponseEntity cadastrar(@RequestBody @Valid ProdutoCadastroRequest produtoCadastroRequest, UriComponentsBuilder uriBuilder){
         ProdutoCadastroDTO produtoCadastroDTO = new ProdutoCadastroDTO(produtoCadastroRequest.idCategoria(), produtoCadastroRequest.nome(), produtoCadastroRequest.valor());
-        ProdutoController produtoController = new ProdutoController(this.produtoRepository);
+        ProdutoController produtoController = new ProdutoController(this.produtoDataSource);
         ProdutoCadastradoDTO produto = produtoController.cadastrar(produtoCadastroDTO);
         return ResponseEntity.ok(produto);
     }
@@ -45,14 +44,14 @@ public class ProdutoRestController {
     @Transactional
     public ResponseEntity atualizar(@RequestBody @Valid ProdutoAtualizacaoRequest produtoAtualizacaoRequest){
         ProdutoCadastradoDTO produtoCadastradoDTO = new ProdutoCadastradoDTO(produtoAtualizacaoRequest.id(), produtoAtualizacaoRequest.idCategoria(), produtoAtualizacaoRequest.nome(), produtoAtualizacaoRequest.valor());
-        ProdutoController produtoController = new ProdutoController(this.produtoRepository);
+        ProdutoController produtoController = new ProdutoController(this.produtoDataSource);
         ProdutoCadastradoDTO produto = produtoController.atualizar(produtoCadastradoDTO);
         return ResponseEntity.ok(produto);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity detalhar(@PathVariable Long id){
-        ProdutoController produtoController = new ProdutoController(this.produtoRepository);
+        ProdutoController produtoController = new ProdutoController(this.produtoDataSource);
         ProdutoCadastradoDTO produto = produtoController.recuperarProdutoPorId(id);
         return ResponseEntity.ok(produto);
     }
@@ -60,7 +59,7 @@ public class ProdutoRestController {
     @DeleteMapping("/{id}")
     @Transactional
     public ResponseEntity excluir(@PathVariable Long id){
-        ProdutoController produtoController = new ProdutoController(this.produtoRepository);
+        ProdutoController produtoController = new ProdutoController(this.produtoDataSource);
         produtoController.excluir(id);
         return ResponseEntity.noContent().build();
     }

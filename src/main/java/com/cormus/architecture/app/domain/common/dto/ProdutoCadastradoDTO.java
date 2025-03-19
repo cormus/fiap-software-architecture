@@ -15,6 +15,10 @@ public class ProdutoCadastradoDTO {
 
     private Double valor;
 
+    public ProdutoCadastradoDTO(){
+
+    }
+
     public ProdutoCadastradoDTO(Produto produto){
         this.id = produto.getId();
         this.idCategoria = produto.getIdCategoria();

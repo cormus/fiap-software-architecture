@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Usuario  implements UserDetails {
+public class UsuarioEntity  implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,15 +31,15 @@ public class Usuario  implements UserDetails {
     private String senha;
 
     @Embedded
-    private Endereco endereco;
+    private EnderecoVO endereco;
 
-    public Usuario(UsuarioCadastroDto usuario) {
+    public UsuarioEntity(UsuarioCadastroDto usuario) {
         this.nome = usuario.nome();
         this.telefone = usuario.telefone();
         this.email = usuario.email();
         this.cpf = usuario.cpf();
         this.senha = usuario.senha();
-        this.endereco = new Endereco(usuario.endereco());
+        this.endereco = new EnderecoVO(usuario.endereco());
     }
 
     public void atualizar(UsuarioAtualizacaoDto usuario){

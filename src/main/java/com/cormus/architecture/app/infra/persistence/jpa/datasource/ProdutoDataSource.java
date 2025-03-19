@@ -1,4 +1,4 @@
-package com.cormus.architecture.app.infra.persistence.jpa.gateway;
+package com.cormus.architecture.app.infra.persistence.jpa.datasource;
 
 import com.cormus.architecture.app.domain.entity.Produto;
 import com.cormus.architecture.app.infra.common.converter.ProdutoConverter;

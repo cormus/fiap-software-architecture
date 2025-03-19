@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class ProdutoCategoria {
+public class ProdutoCategoriaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
