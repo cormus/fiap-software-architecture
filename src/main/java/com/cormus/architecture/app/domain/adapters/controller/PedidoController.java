@@ -22,4 +22,10 @@ public class PedidoController {
         return PedidoPresenter.listBind(pedidoUseCase.pedidosListar());
     }
 
+    public PedidoCadastradoDTO statusPedidoAtualizar(PedidoCadastradoDTO pedidoCadastradoDTO){
+        PedidoGateway pedidoGateway = new PedidoGateway(this.pedidoDataSource);
+        PedidoUseCase pedidoUseCase = new PedidoUseCase(pedidoGateway);
+        return PedidoPresenter.bind(pedidoUseCase.statusPedidoAtualizar(pedidoCadastradoDTO));
+    }
+
 }

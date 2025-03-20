@@ -1,5 +1,6 @@
 package com.cormus.architecture.app.domain.entity;
 
+import com.cormus.architecture.app.domain.enumeration.PagamentoStatusEnum;
 import com.cormus.architecture.app.domain.enumeration.PedidoStatusEnum;
 import lombok.*;
 
@@ -18,6 +19,8 @@ public class Pedido {
     private LocalDateTime pedidoData;
 
     private PedidoStatusEnum status;
+
+    private PagamentoStatusEnum status_pagamento;
 
     private List<PedidoItem> itens = new ArrayList<>();
 

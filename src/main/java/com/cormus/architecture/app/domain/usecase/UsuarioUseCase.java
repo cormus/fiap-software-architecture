@@ -12,7 +12,11 @@ public class UsuarioUseCase {
     }
 
     public Usuario procurarPorCpf(String cpf){
-        return this.usuarioGateway.procurarPorCpf(cpf);
+        Usuario usuario = this.usuarioGateway.procurarPorCpf(cpf);
+        if(usuario == null){
+            throw new IllegalArgumentException("Usuário não encontrado");
+        }
+        return usuario;
     }
 
     public Usuario cadastrar(Usuario usuario){

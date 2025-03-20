@@ -9,6 +9,7 @@ import com.cormus.architecture.app.infra.persistence.jpa.entity.ProdutoEntity;
 import com.cormus.architecture.app.infra.persistence.jpa.repository.PedidoRepository;
 import org.springframework.stereotype.Component;
 
+import java.io.Console;
 import java.util.List;
 
 @Component
@@ -31,6 +32,7 @@ public class PedidoDataSource implements com.cormus.architecture.app.domain.comm
         PedidoEntity pedidoEntity = new PedidoEntity();
         pedidoEntity.setIdUsuario(pedido.getIdUsuario());
         pedidoEntity.setStatus(pedido.getStatus());
+        pedidoEntity.setStatus_pagamento(pedido.getStatus_pagamento());
         pedidoEntity.setPedidoData(pedido.getPedidoData());
 
         for (PedidoItem pedidoItem : pedido.getItens()) {
@@ -47,5 +49,50 @@ public class PedidoDataSource implements com.cormus.architecture.app.domain.comm
         this.pedidoRepository.save(pedidoEntity);
         pedido.setId(pedidoEntity.getId());
         return pedido;
+    }
+
+    @Override
+    public Pedido pedidoPorId(Long idPedido) {
+        Pedido pedido = null;
+
+        try{
+            PedidoEntity pedidoEntity = this.pedidoRepository.getReferenceById(idPedido);
+            pedido = PedidoConverter.pedidoEntityToPedido(pedidoEntity);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        return pedido;
+    }
+
+    @Override
+    public Pedido statusPagamentoAtualizar(Pedido pedido) {
+
+        PedidoEntity pedidoEntity = null;
+
+        try{
+            pedidoEntity = this.pedidoRepository.getReferenceById(pedido.getId());
+            pedidoEntity.setStatus_pagamento(pedido.getStatus_pagamento());
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        return PedidoConverter.pedidoEntityToPedido(pedidoEntity);
+    }
+
+
+    @Override
+    public Pedido statusPedidoAtualizar(Pedido pedido) {
+
+        PedidoEntity pedidoEntity = null;
+
+        try{
+            pedidoEntity = this.pedidoRepository.getReferenceById(pedido.getId());
+            pedidoEntity.setStatus(pedido.getStatus());
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        return PedidoConverter.pedidoEntityToPedido(pedidoEntity);
     }
 }

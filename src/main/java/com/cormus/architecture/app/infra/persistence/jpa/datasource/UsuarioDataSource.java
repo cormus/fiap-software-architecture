@@ -15,8 +15,14 @@ public class UsuarioDataSource implements com.cormus.architecture.app.domain.com
 
     @Override
     public Usuario procurarPorCpf(String cpf){
-        UsuarioEntity usuario = this.usuarioRepository.findByCpf(cpf);
-        return UsuarioConverter.usuarioEntityParaUsuario(usuario);
+        Usuario usuario = null;
+        try {
+            UsuarioEntity usuarioEntity = this.usuarioRepository.findByCpf(cpf);
+            usuario = UsuarioConverter.usuarioEntityParaUsuario(usuarioEntity);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return usuario;
     }
 
     @Override

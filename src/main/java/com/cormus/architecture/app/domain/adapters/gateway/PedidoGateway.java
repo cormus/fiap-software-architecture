@@ -21,4 +21,16 @@ public class PedidoGateway {
         return this.pedidoDataSource.cadastrar(pedido);
     }
 
+    public Pedido pedidoPorId(Long idPedido){
+        return this.pedidoDataSource.pedidoPorId(idPedido);
+    }
+
+    public Pedido statusPagamentoAtualizar(Pedido pedido){
+        return this.pedidoDataSource.statusPagamentoAtualizar(pedido);
+    }
+
+    public Pedido statusPedidoAtualizar(Pedido pedido){
+        return this.pedidoDataSource.statusPedidoAtualizar(pedido);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.cormus.architecture.app.infra.persistence.jpa.entity;
 
+import com.cormus.architecture.app.domain.enumeration.PagamentoStatusEnum;
 import com.cormus.architecture.app.domain.enumeration.PedidoStatusEnum;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -31,6 +32,10 @@ public class PedidoEntity {
     @Enumerated(EnumType.STRING) // Configura como string no banco de dados
     @Column(name = "status", nullable = false)
     private PedidoStatusEnum status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status_pagamento", nullable = false)
+    private PagamentoStatusEnum status_pagamento;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

@@ -30,7 +30,11 @@ public class ProdutoUseCase {
     }
 
     public Produto recuperarProdutoPorId(Long idProduto){
-        return this.produtoGateway.recuperarProdutoPorId(idProduto);
+        Produto produto =  this.produtoGateway.recuperarProdutoPorId(idProduto);
+        if(produto == null){
+            throw new IllegalArgumentException("Produto não encontrado");
+        }
+        return produto;
     }
 
     public void excluir(Long idProduto){
