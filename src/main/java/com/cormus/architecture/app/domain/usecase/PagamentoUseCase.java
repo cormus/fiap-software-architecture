@@ -1,9 +1,8 @@
 package com.cormus.architecture.app.domain.usecase;
 
 import com.cormus.architecture.app.domain.adapters.gateway.PedidoGateway;
-import com.cormus.architecture.app.domain.common.dto.PagamentoStatusDTO;
 import com.cormus.architecture.app.domain.entity.Pedido;
-import com.cormus.architecture.app.domain.enumeration.PedidoStatusEnum;
+import com.cormus.architecture.app.domain.enumeration.PagamentoStatusEnum;
 
 public class PagamentoUseCase {
 
@@ -23,6 +22,13 @@ public class PagamentoUseCase {
     }
 
     public Pedido statusPagamentoAtualizar(Pedido pedido){
+
+        Pedido pedidoEncontrado = this.pagamentoStatusConsultar(pedido.getId());
+
+        if(pedidoEncontrado.getStatus_pagamento() != PagamentoStatusEnum.WAITING){
+            throw new IllegalArgumentException("Status do pagamento não pode ser atualizado");
+        }
+
         return this.pedidoGateway.statusPagamentoAtualizar(pedido);
     }
 

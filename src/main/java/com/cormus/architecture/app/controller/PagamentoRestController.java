@@ -3,6 +3,7 @@ package com.cormus.architecture.app.controller;
 import com.cormus.architecture.app.domain.adapters.controller.PagamentoController;
 import com.cormus.architecture.app.domain.common.dto.PagamentoStatusDTO;
 import com.cormus.architecture.app.domain.common.dto.PedidoCadastradoDTO;
+import com.cormus.architecture.app.domain.enumeration.PagamentoStatusEnum;
 import com.cormus.architecture.app.infra.common.dto.PagamentoAtualizarStatusRequest;
 import com.cormus.architecture.app.infra.persistence.jpa.datasource.PedidoDataSource;
 import jakarta.validation.Valid;
@@ -29,9 +30,9 @@ public class PagamentoRestController {
         return ResponseEntity.ok(status);
     }
 
-    @PutMapping("/status")
+    @PostMapping("/webhook")
     @Transactional
-    public ResponseEntity statusPagamentoAtualizar(@RequestBody @Valid PagamentoAtualizarStatusRequest status) {
+    public ResponseEntity webhook(@RequestBody @Valid PagamentoAtualizarStatusRequest status) {
 
         PagamentoStatusDTO pagamentoStatusDTO = new PagamentoStatusDTO();
         pagamentoStatusDTO.setIdPedido(status.idPedido());

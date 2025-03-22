@@ -4,7 +4,8 @@ public enum PedidoStatusEnum {
     RECEBIDO("Recebido"),
     EM_PREPARACAO("Em preparação"),
     PRONTO("Pronto"),
-    FINALIZADO("Finalizado");
+    FINALIZADO("Finalizado"),
+    CANCELADO("Cancelado");
 
     private final String descricao;
 
