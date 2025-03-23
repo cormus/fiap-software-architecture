@@ -55,6 +55,10 @@ Para testes com imagens Docker criadas localmente, vamos tilizando VM Host como 
 
 `eval $(minikube docker-env)`
 
+Crie a imagem da aplicação
+
+`docker build -t cormus/fiap-software-architecture:0.0.1 -f Dockerfile .`
+
 Agora execute a aplicação com os comandos abaixo
 
 `kubectl apply -f metrics.yaml`\
