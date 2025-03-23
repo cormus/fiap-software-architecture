@@ -1,0 +1,7 @@
+INSERT INTO pedido_db.pedido (id, id_usuario,status,status_pagamento,pedido_data) VALUES
+	 (1, 1,'CANCELADO','AUTHORIZED','2025-03-18 17:38:05'),
+	 (2, 1,'RECEBIDO','AUTHORIZED','2025-03-19 17:38:22'),
+	 (3, 1,'PRONTO','AUTHORIZED','2025-03-20 19:35:38'),
+	 (4, 1,'RECEBIDO','WAITING','2025-03-19 17:38:24'),
+	 (5, 1,'EM_PREPARACAO','WAITING','2025-03-17 19:39:22'),
+	 (6, 1,'FINALIZADO','WAITING','2025-03-20 19:35:38');

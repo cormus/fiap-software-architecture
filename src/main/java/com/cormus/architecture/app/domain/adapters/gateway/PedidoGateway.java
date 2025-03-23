@@ -1,0 +1,36 @@
+package com.cormus.architecture.app.domain.adapters.gateway;
+
+import com.cormus.architecture.app.domain.common.interfaces.datasource.PedidoDataSource;
+import com.cormus.architecture.app.domain.entity.Pedido;
+
+import java.util.List;
+
+public class PedidoGateway {
+
+    private final PedidoDataSource pedidoDataSource;
+
+    public PedidoGateway(PedidoDataSource pedidoDataSource){
+        this.pedidoDataSource  = pedidoDataSource;
+    }
+
+    public List<Pedido> listar(){
+        return this.pedidoDataSource.listar();
+    }
+
+    public Pedido cadastrar(Pedido pedido){
+        return this.pedidoDataSource.cadastrar(pedido);
+    }
+
+    public Pedido pedidoPorId(Long idPedido){
+        return this.pedidoDataSource.pedidoPorId(idPedido);
+    }
+
+    public Pedido statusPagamentoAtualizar(Pedido pedido){
+        return this.pedidoDataSource.statusPagamentoAtualizar(pedido);
+    }
+
+    public Pedido statusPedidoAtualizar(Pedido pedido){
+        return this.pedidoDataSource.statusPedidoAtualizar(pedido);
+    }
+
+}
