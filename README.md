@@ -57,6 +57,7 @@ Para testes com imagens Docker criadas localmente, vamos tilizando VM Host como 
 
 Agora execute a aplicação com os comandos abaixo
 
+`kubectl apply -f metrics.yaml`\
 `kubectl apply -f mysql-storage.yaml`\
 `kubectl apply -f mysql-secret.yaml`\
 `kubectl apply -f mysql-configmap.yaml`\
