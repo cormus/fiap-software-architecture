@@ -78,17 +78,19 @@ Verifique qualo o IP que o Minikube está em execução
 
 ### Documentação da API
 
-A API possui uma documentação interativa gerada com Swagger. Após iniciar a aplicação, acesse:
+A API possui uma documentação interativa gerada com Swagger. Após iniciar a aplicação, utilize o comando abaixo para que o Minikube disponibilize a url de acesso:
 
-http://**\<utilize o IP Minikube\>**:30080/swagger-ui/index.html
+`minikube service spring-app-service --url`
+
+**\<URL de acesso disponibilizada>**/swagger-ui/index.html
 
 ### Acesso ao phpMyAdmin
 
 Tammbém estará disponível acesso ao **phpMyAdmin**, permitindo a visualização das bases de dados e tabelas do projeto, acesse:
 
-http://**\<utilize o IP Minikube\>**:30081/
+`minikube service phpmyadmin --url`
 
-Dados de acesso
+Dados de acesso phpMyAdmin
 
 **Servidor:** mysql  
 **Usuário:** root  
