@@ -9,7 +9,6 @@ import com.cormus.architecture.app.infra.persistence.jpa.entity.ProdutoEntity;
 import com.cormus.architecture.app.infra.persistence.jpa.repository.PedidoRepository;
 import org.springframework.stereotype.Component;
 
-import java.io.Console;
 import java.util.List;
 
 @Component

@@ -1,6 +1,8 @@
 package com.cormus.architecture.app.domain.usecase;
 
+import com.cormus.architecture.app.domain.adapters.gateway.PagamentoGateway;
 import com.cormus.architecture.app.domain.adapters.gateway.PedidoGateway;
+import com.cormus.architecture.app.domain.common.interfaces.PagamentoService;
 import com.cormus.architecture.app.domain.entity.Pedido;
 import com.cormus.architecture.app.domain.enumeration.PagamentoStatusEnum;
 
@@ -8,8 +10,11 @@ public class PagamentoUseCase {
 
     private final PedidoGateway pedidoGateway;
 
-    public PagamentoUseCase(PedidoGateway pedidoGateway){
+    private final PagamentoGateway pagamentoGateway;
+
+    public PagamentoUseCase(PedidoGateway pedidoGateway, PagamentoGateway pagamentoGateway){
         this.pedidoGateway = pedidoGateway;
+        this.pagamentoGateway = pagamentoGateway;
     }
 
     public Pedido pagamentoStatusConsultar(Long idPedido){
@@ -30,6 +35,10 @@ public class PagamentoUseCase {
         }
 
         return this.pedidoGateway.statusPagamentoAtualizar(pedido);
+    }
+
+    public String pagamentoQrCodeGerar(Pedido pedido){
+        return this.pagamentoGateway.pagamentoQrCodeGerar(pedido);
     }
 
 }
