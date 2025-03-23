@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/api/v1/produto/**", "/api/v1/produto-categoria/**", "api/v1/checkout/**", "api/v1/pedido/**", "api/v1/cliente/**").permitAll()
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/api/v1/produto/**", "/api/v1/produto-categoria/**", "api/v1/checkout/**", "api/v1/pedido/**", "api/v1/cliente/**", "api/v1/pagamento/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) //call security filter before spring authentication filter

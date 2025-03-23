@@ -1,7 +1,6 @@
 package com.cormus.architecture.app.infra.security;
 
-import com.cormus.architecture.app.domain.entity.Usuario;
-import com.cormus.architecture.app.domain.repository.UsuarioRepository;
+import com.cormus.architecture.app.infra.persistence.jpa.repository.UsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

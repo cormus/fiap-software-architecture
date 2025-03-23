@@ -21,49 +21,88 @@ Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação e
     - Mysql Connector
     - Springdoc
 - Banco de Dados: MySql
-- Containerização: Docker
+- Containerização: Kubernetes
 - Documentação da API: Swagger/OpenAPI
 - Sistema de Gerenciamento de Base de Dados Relacional (SGBDR): phpMyAdmin
 
 *******
 
-## Instalação e Execução
+## Instalação e Execução Local
 
 ### Pré-requisitos
 
 - Docker e Docker Compose
+- Minikube
+- Git
 
 ### Passos para Configuração
+
+Confirme se o Minikube está em execução utilizando o comando abaixo
+
+`minikube status`
+
+Caso não esteja, inicie o Minikube com 
+
+`minikube start`
+
+Clone o projeto em sua máquina
 
 `git clone https://github.com/cormus/fiap-software-architecture.git`
 
 `cd fiap-software-architecture`
 
-`docker-compose up`
+Para testes com imagens Docker criadas localmente, vamos tilizando VM Host como Docker host
+
+`eval $(minikube docker-env)`
+
+Crie a imagem da aplicação
+
+`docker build -t cormus/fiap-software-architecture:0.0.1 -f Dockerfile .`
+
+Agora execute a aplicação com os comandos abaixo
+
+`kubectl apply -f metrics.yaml`\
+`kubectl apply -f mysql-storage.yaml`\
+`kubectl apply -f mysql-secret.yaml`\
+`kubectl apply -f mysql-configmap.yaml`\
+`kubectl apply -f mysql-deployment.yaml`\
+`kubectl apply -f phpmyadmin-deployment.yaml`\
+`kubectl apply -f spring-deployment.yaml`\
+`kubectl apply -f spring-hpa.yaml`
 
 # Acessos
 
+Verifique qualo o IP que o Minikube está em execução
+
+`minikube ip`
+
 ### Documentação da API
 
-A API possui uma documentação interativa gerada com Swagger. Após iniciar a aplicação, acesse:
+A API possui uma documentação interativa gerada com Swagger. Após iniciar a aplicação, utilize o comando abaixo para que o Minikube disponibilize a url de acesso:
 
-http://localhost:8080/swagger-ui/index.html
+`minikube service spring-app-service --url`
+
+**\<URL de acesso disponibilizada>**/swagger-ui/index.html
 
 ### Acesso ao phpMyAdmin
 
 Tammbém estará disponível acesso ao **phpMyAdmin**, permitindo a visualização das bases de dados e tabelas do projeto, acesse:
 
-http://localhost:8090
+`minikube service phpmyadmin --url`
 
-Dados de acesso
+Dados de acesso phpMyAdmin
 
-**Servidor:** db  
+**Servidor:** mysql  
 **Usuário:** root  
 **Senha:** root
 
 ###  Event Storming
 
 https://miro.com/app/board/uXjVLB4ecdM=/
+
+### Desenho da arquitetura
+
+https://miro.com/app/board/uXjVINORgl0=/
 
 ###  Vídeo de apresentação
 
