@@ -1,9 +1,6 @@
 package com.cormus.architecture.app.domain.adapters.presenters;
 
-import com.cormus.architecture.app.domain.common.dto.PedidoCadastradoDTO;
-import com.cormus.architecture.app.domain.common.dto.PedidoItemCadastradoDTO;
-import com.cormus.architecture.app.domain.common.dto.ProdutoCadastradoDTO;
-import com.cormus.architecture.app.domain.common.dto.ProdutoCadastroDTO;
+import com.cormus.architecture.app.domain.common.dto.*;
 import com.cormus.architecture.app.domain.entity.Pedido;
 import com.cormus.architecture.app.domain.entity.PedidoItem;
 
@@ -19,6 +16,13 @@ public class PedidoPresenter {
         pedidoCadastradoDTO.setStatus(pedido.getStatus());
         //pedidoCadastradoDTO.setItens(PedidoPresenter.listItemBind(pedido.getItens()));
         return pedidoCadastradoDTO;
+    }
+
+    public  static CheckoutDTO bind(Pedido pedido, String qrCodeUrl){
+        CheckoutDTO checkoutDTO = new CheckoutDTO();
+        checkoutDTO.setIdPedido(pedido.getId());
+        checkoutDTO.setQrCodeUrl(qrCodeUrl);
+        return checkoutDTO;
     }
 
     public static List<PedidoCadastradoDTO> listBind(List<Pedido> pedidos){

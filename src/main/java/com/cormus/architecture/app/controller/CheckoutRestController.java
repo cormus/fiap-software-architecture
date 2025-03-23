@@ -1,13 +1,11 @@
 package com.cormus.architecture.app.controller;
 
 import com.cormus.architecture.app.domain.adapters.controller.CheckoutController;
-import com.cormus.architecture.app.domain.common.dto.PedidoCadastradoDTO;
-import com.cormus.architecture.app.domain.common.dto.PedidoCadastroDTO;
-import com.cormus.architecture.app.domain.common.dto.PedidoItemCadastroDTO;
-import com.cormus.architecture.app.domain.common.dto.ProdutoCadastradoDTO;
-import com.cormus.architecture.app.infra.common.dto.CheckoutDetalharResponse;
-import com.cormus.architecture.app.infra.common.dto.PedidoCadastroRequest;
+import com.cormus.architecture.app.domain.common.dto.*;
+import com.cormus.architecture.app.infra.common.dto.CheckoutCadastroRequest;
 import com.cormus.architecture.app.infra.persistence.jpa.datasource.PedidoDataSource;
+import com.cormus.architecture.app.infra.persistence.jpa.datasource.UsuarioDataSource;
+import com.cormus.architecture.app.infra.service.PagamentoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +26,17 @@ public class CheckoutRestController {
     @Autowired
     PedidoDataSource pedidoDataSource;
 
+    @Autowired
+    UsuarioDataSource usuarioDataSource;
+
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid PedidoCadastroRequest pedidoDTO){
+    public ResponseEntity cadastrar(@RequestBody @Valid CheckoutCadastroRequest checkoutCadastroRequest){
 
 
-        List<PedidoItemCadastroDTO> itens = pedidoDTO.itens().stream().map(item -> {
+        List<PedidoItemCadastroDTO> itens = checkoutCadastroRequest.itens().stream().map(item -> {
             ProdutoCadastradoDTO produtoCadastradoDTO = new ProdutoCadastradoDTO();
-            produtoCadastradoDTO.setId(item.produto().getId());
+            produtoCadastradoDTO.setId(item.produto().id());
 
             PedidoItemCadastroDTO pedidoItemCadastroDTO = new PedidoItemCadastroDTO();
             pedidoItemCadastroDTO.setQuantidade(item.quantidade());
@@ -45,12 +46,14 @@ public class CheckoutRestController {
         }).toList();
 
         PedidoCadastroDTO pedidoCadastroDTO = new PedidoCadastroDTO();
-        pedidoCadastroDTO.setIdUsuario(pedidoDTO.idUsuario());
+        pedidoCadastroDTO.setIdUsuario(checkoutCadastroRequest.idUsuario());
         pedidoCadastroDTO.setItens(itens);
 
-        CheckoutController checkoutController = new CheckoutController(this.pedidoDataSource);
-        PedidoCadastradoDTO pedidoCadastrado = checkoutController.cadastrar(pedidoCadastroDTO);
-        return ResponseEntity.ok(new CheckoutDetalharResponse(pedidoCadastrado.getId(), "https://mercadopago.com.br/qrcode.png"));
+        PagamentoService pagamentoService = new PagamentoService();
+
+        CheckoutController checkoutController = new CheckoutController(this.pedidoDataSource, this.usuarioDataSource, pagamentoService);
+        CheckoutDTO pedidoCadastrado = checkoutController.cadastrar(pedidoCadastroDTO);
+        return ResponseEntity.ok(pedidoCadastrado);
     }
 
 }

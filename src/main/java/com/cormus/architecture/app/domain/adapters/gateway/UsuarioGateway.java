@@ -15,6 +15,10 @@ public class UsuarioGateway {
         return this.usuarioDataSource.procurarPorCpf(cpf);
     }
 
+    public Usuario procurarPorId(Long id){
+        return this.usuarioDataSource.procurarPorId(id);
+    }
+
     public Usuario cadastrar(Usuario usuario){
         return this.usuarioDataSource.cadastrar(usuario);
     }

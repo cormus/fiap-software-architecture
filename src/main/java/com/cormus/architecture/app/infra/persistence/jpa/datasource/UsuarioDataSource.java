@@ -35,4 +35,16 @@ public class UsuarioDataSource implements com.cormus.architecture.app.domain.com
         return UsuarioConverter.usuarioEntityParaUsuario(usuarioEntity);
     }
 
+    @Override
+    public Usuario procurarPorId(Long id) {
+        Usuario usuario = null;
+        try {
+            UsuarioEntity usuarioEntity = this.usuarioRepository.getReferenceById(id);
+            usuario = UsuarioConverter.usuarioEntityParaUsuario(usuarioEntity);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return usuario;
+    }
+
 }
