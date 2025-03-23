@@ -22,9 +22,7 @@ spec:
           requests:
             cpu: "1000m"
         env:
-          #name: SPRING_PROFILES_ACTIVE
-          #value: "prod" # Definir perfil Spring Boot se necessário
-          - name: SPRING_DATASOURCE_URL #"jdbc:mysql://mysql:3306/pedido_db"
+          - name: SPRING_DATASOURCE_URL
             valueFrom:
               configMapKeyRef:
                 name: mysql-configmap
@@ -51,4 +49,4 @@ spec:
   ports:
     - port: 8080
       targetPort: 8080
-      nodePort: 30080  # Porta acessível no host
+      nodePort: 30080

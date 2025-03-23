@@ -48,7 +48,7 @@ kind: Service
 metadata:
   name: mysql
 spec:
-  type: NodePort  # Alterado de ClusterIP para NodePort, com isso é possível acessar o banco de dados externamente
+  type: NodePort
   ports:
   - port: 3306
     targetPort: 3306

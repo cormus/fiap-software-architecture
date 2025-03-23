@@ -17,7 +17,7 @@ spec:
         image: phpmyadmin/phpmyadmin:latest
         env:
         - name: PMA_HOST
-          value: "mysql"  # Nome do serviço do MySQL no cluster
+          value: "mysql"
         - name: PMA_PORT
           value: "3306"
         - name: PMA_ARBITRARY
@@ -30,7 +30,7 @@ kind: Service
 metadata:
   name: phpmyadmin
 spec:
-  type: NodePort  # Torna o phpMyAdmin acessível externamente
+  type: NodePort
   ports:
     - port: 80
       targetPort: 80
