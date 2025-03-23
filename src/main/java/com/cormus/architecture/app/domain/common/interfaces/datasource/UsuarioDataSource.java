@@ -8,4 +8,6 @@ public interface UsuarioDataSource {
     Usuario procurarPorCpf(String cpf);
 
     Usuario cadastrar(Usuario usuario);
+
+    Usuario procurarPorId(Long id);
 }

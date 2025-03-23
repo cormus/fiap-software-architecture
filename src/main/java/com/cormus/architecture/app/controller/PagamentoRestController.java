@@ -6,6 +6,7 @@ import com.cormus.architecture.app.domain.common.dto.PedidoCadastradoDTO;
 import com.cormus.architecture.app.domain.enumeration.PagamentoStatusEnum;
 import com.cormus.architecture.app.infra.common.dto.PagamentoAtualizarStatusRequest;
 import com.cormus.architecture.app.infra.persistence.jpa.datasource.PedidoDataSource;
+import com.cormus.architecture.app.infra.service.PagamentoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,9 @@ public class PagamentoRestController {
     @GetMapping("/{idPedido}/status")
     public ResponseEntity cadastrar(@PathVariable Long idPedido) {
 
-        PagamentoController pagamentoController = new PagamentoController(this.pedidoDataSource);
+        PagamentoService pagamentoService = new PagamentoService();
+
+        PagamentoController pagamentoController = new PagamentoController(this.pedidoDataSource, pagamentoService);
         PagamentoStatusDTO status = pagamentoController.pagamentoStatusConsultar(idPedido);
 
         return ResponseEntity.ok(status);
@@ -34,11 +37,13 @@ public class PagamentoRestController {
     @Transactional
     public ResponseEntity webhook(@RequestBody @Valid PagamentoAtualizarStatusRequest status) {
 
+        PagamentoService pagamentoService = new PagamentoService();
+
         PagamentoStatusDTO pagamentoStatusDTO = new PagamentoStatusDTO();
         pagamentoStatusDTO.setIdPedido(status.idPedido());
         pagamentoStatusDTO.setStatus(status.status());
 
-        PagamentoController pagamentoController = new PagamentoController(this.pedidoDataSource);
+        PagamentoController pagamentoController = new PagamentoController(this.pedidoDataSource, pagamentoService);
         PagamentoStatusDTO pagamentoAtualizado = pagamentoController.statusPagamentoAtualizar(pagamentoStatusDTO);
 
         return ResponseEntity.ok(pagamentoAtualizado);

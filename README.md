@@ -72,9 +72,7 @@ Agora execute a aplicação com os comandos abaixo
 
 # Acessos
 
-Verifique qualo o IP que o Minikube está em execução
-
-`minikube ip`
+Para acessar a aplicação utilizaremos o `minikube service` para criar as urls
 
 ### Documentação da API
 
@@ -96,17 +94,13 @@ Dados de acesso phpMyAdmin
 **Usuário:** root  
 **Senha:** root
 
-###  Event Storming
-
-https://miro.com/app/board/uXjVLB4ecdM=/
-
 ### Desenho da arquitetura
 
 https://miro.com/app/board/uXjVINORgl0=/
 
 ###  Vídeo de apresentação
 
-https://drive.google.com/file/d/1IhN1DiGmlfhD6Fm65LS9tnTqPBxo4LDZ/view
+https://drive.google.com/file/d/1bcaT3vvjSywxBUKyhN1wZGfwWoy7hLKJ/view?usp=sharing
 
 # Autores
 
