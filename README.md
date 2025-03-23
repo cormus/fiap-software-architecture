@@ -76,13 +76,13 @@ Verifique qualo o IP que o Minikube está em execução
 
 A API possui uma documentação interativa gerada com Swagger. Após iniciar a aplicação, acesse:
 
-http://\<utilize o ip minikube\>:30080/swagger-ui/index.html
+http://**\<utilize o IP Minikube\>**:30080/swagger-ui/index.html
 
 ### Acesso ao phpMyAdmin
 
 Tammbém estará disponível acesso ao **phpMyAdmin**, permitindo a visualização das bases de dados e tabelas do projeto, acesse:
 
-http://\<utilize o ip minikube\>:30081/
+http://**\<utilize o IP Minikube\\>**:30081/
 
 Dados de acesso
 
