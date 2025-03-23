@@ -39,7 +39,7 @@ Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação e
 
 `cd fiap-software-architecture`
 
-`dockcer-compose up`
+`docker-compose up`
 
 # Acessos
 
@@ -67,7 +67,7 @@ https://miro.com/app/board/uXjVLB4ecdM=/
 
 ###  Vídeo de apresentação
 
-https://miro.com/app/board/uXjVLB4ecdM=/
+https://drive.google.com/file/d/1IhN1DiGmlfhD6Fm65LS9tnTqPBxo4LDZ/view
 
 # Autores
 

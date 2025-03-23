@@ -1,70 +1,48 @@
 package com.cormus.architecture.app.domain.entity;
 
-import com.cormus.architecture.app.domain.dto.ProdutoAtualizacaoDTO;
-import com.cormus.architecture.app.domain.dto.ProdutoCadastroDTO;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
-@Table(name = "produto")
-@Entity(name = "Produto")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Produto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "id_categoria")
     private Long idCategoria;
 
     private String nome;
 
     private Double valor;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProdutoImagem> imagens = new ArrayList<>();
+    private LocalDateTime dataExclusao;
 
-    public Produto(ProdutoCadastroDTO produto){
-
-        this.nome = produto.nome();
-        this.valor = produto.valor();
-        this.idCategoria = produto.idCategoria();
-
+    public Produto(Long id){
+        if(id == null){
+            throw new IllegalArgumentException("Produto inválido");
+        }
+        this.id = id;
     }
 
-    public Produto(ProdutoAtualizacaoDTO produto) {
-        this.id = produto.id();
-        this.nome = produto.nome();
-        this.valor = produto.valor();
+    public Produto(Long id, Long idCategoria, String nome, Double valor){
+
+        if(!validarNome(nome) || !validarCategoria(idCategoria)){
+            throw new IllegalArgumentException("Produto inválido");
+        }
+
+        this.id = id;
+        this.idCategoria = idCategoria;
+        this.nome = nome;
+        this.valor = valor;
     }
 
-    public Produto(Produto produto) {
-        this.id = produto.getId();
-        this.nome = produto.getNome();
-        this.valor = produto.getValor();
+    private boolean validarNome(String nome){
+        return nome == null || !nome.trim().isEmpty();
     }
 
-    public void atualizar(ProdutoAtualizacaoDTO produtoDTO){
-        this.nome = produtoDTO.nome();
-        this.valor = produtoDTO.valor();
+    private boolean validarCategoria(Long idCategoria){
+        return idCategoria != null && idCategoria > 0;
     }
 
-    public void addImagem(ProdutoImagem item) {
-        item.setProduto(this);
-        this.imagens.add(item);
-    }
-
-    public void removeImagem(ProdutoImagem imagem) {
-        imagens.remove(imagem);
-        imagem.setProduto(null);
-    }
 }
