@@ -82,7 +82,7 @@ http://**\<utilize o IP Minikube\>**:30080/swagger-ui/index.html
 
 Tammbém estará disponível acesso ao **phpMyAdmin**, permitindo a visualização das bases de dados e tabelas do projeto, acesse:
 
-http://**\<utilize o IP Minikube\\>**:30081/
+http://**\<utilize o IP Minikube\>**:30081/
 
 Dados de acesso
 
