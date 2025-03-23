@@ -4,3 +4,4 @@ metadata:
   name: mysql-configmap
 data:
   DATABASE_URL: "jdbc:mysql://mysql:3306/pedido_db"
+  DATABASE_NAME: pedido_db

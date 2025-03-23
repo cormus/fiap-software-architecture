@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minha-app-spring
+  name: spring-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: minha-app-spring
+      app: spring-app
   template:
     metadata:
       labels:
-        app: minha-app-spring
+        app: spring-app
     spec:
       containers:
-      - name: minha-app-spring
+      - name: spring-app
         image: cormus/fiap-software-architecture:0.0.1
         imagePullPolicy: Never # Alterado para Never para utilizar a imagem local
         ports:
@@ -43,11 +43,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: minha-app-spring-service
+  name: spring-app-service
 spec:
   type: NodePort
   selector:
-    app: minha-app-spring
+    app: spring-app
   ports:
     - port: 8080
       targetPort: 8080

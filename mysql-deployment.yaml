@@ -18,11 +18,20 @@ spec:
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "root"  # Senha definida diretamente
-        - name: MYSQL_DATABASE
-          value: "pedido_db"
+          valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: DATABASE_PASSWORD
         - name: MYSQL_PASSWORD
-          value: "root"
+          valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: DATABASE_PASSWORD
+        - name: MYSQL_DATABASE
+          valueFrom:
+              configMapKeyRef:
+                name: mysql-configmap
+                key: DATABASE_NAME
         ports:
         - containerPort: 3306
           name: mysql
