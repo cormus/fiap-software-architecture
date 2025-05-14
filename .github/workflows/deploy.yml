@@ -21,3 +21,7 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '18'
+
+    - name: Build Spring Boot app
+      run: |
+        ./mvnw clean package -DskipTests
