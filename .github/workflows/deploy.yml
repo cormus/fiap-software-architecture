@@ -4,7 +4,7 @@ env:
   AWS_REGION: us-east-2
   AWS_ASSUME_ROLE: arn:aws:iam::881307377501:role/github-actions-fiap-pipelike
   #ECR_REGISTRY: 881307377501.dkr.ecr.us-east-2.amazonaws.com/cormus
-  #ECR_REPOSITORY: cormus
+  ECR_REPOSITORY: cormus
 
 on:
   push:
