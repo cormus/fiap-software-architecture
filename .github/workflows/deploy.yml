@@ -24,4 +24,5 @@ jobs:
 
     - name: Build Spring Boot app
       run: |
+        chmod +x ./mvnw
         ./mvnw clean package -DskipTests
