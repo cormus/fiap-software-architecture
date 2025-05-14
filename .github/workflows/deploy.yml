@@ -3,7 +3,8 @@ name: Deploy to AWS EKS
 env:
   AWS_REGION: us-east-2
   AWS_ASSUME_ROLE: arn:aws:iam::881307377501:role/github-actions-fiap-pipelike
-  CLUSTER_NAME: springboot-eks 
+  ECR_REGISTRY: 881307377501.dkr.ecr.us-east-2.amazonaws.com
+  ECR_REPOSITORY: cormus/fiap
 
 on:
   push:
