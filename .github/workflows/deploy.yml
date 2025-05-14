@@ -46,3 +46,4 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build -t cormus/fiap:$IMAGE_TAG .
+        docker push cormus/fiap:$IMAGE_TAG
