@@ -6,7 +6,7 @@ Este projeto é uma API RESTful desenvolvida em Spring Boot, projetada para gere
 Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação em Arquitetura de Software, com foco em boas práticas de desenvolvimento, design orientado a microsserviços e escalabilidade.
 
 
-### Tecnologias utilizadas:
+### Tecnologias utilizadas: 
 
 - Java 17
 - Framework: Spring Boot
