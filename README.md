@@ -1,5 +1,5 @@
 
-# Pós-Graduaçã em Software Architecture
+# Pós-Graduaçã em Software Architecture 
 
 Este projeto é uma API RESTful desenvolvida em Spring Boot, projetada para gerenciar os pedidos de uma lanchonete. O sistema permite criar, atualizar, listar e excluir produtos, bem como buscar produtos por categoria, realizar checkout de pagamento e listar os pedidos. A aplicação é containerizada com Docker, garantindo portabilidade e facilidade de implantação.
 
