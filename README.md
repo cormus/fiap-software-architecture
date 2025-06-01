@@ -9,7 +9,7 @@ Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação e
 ### Tecnologias utilizadas: 
 
 - Java 17
-- Framework: Spring Boot
+- Framework: Spring Boot 
     - Spring Web  
     - Spring Validation
     - Spring Security
