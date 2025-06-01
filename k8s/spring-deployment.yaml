@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: spring-app
-        image: 881307377501.dkr.ecr.us-east-2.amazonaws.com/cormus:d2f131fca0afad54fa9e73a7fdc0f9f086675bc4
+        image: 881307377501.dkr.ecr.us-east-2.amazonaws.com/cormus:b457bd1711d332e24e3bf030391d04fb30199852
         #imagePullPolicy: Never # Alterado para Never para utilizar a imagem local
         ports:
         - containerPort: 8080
