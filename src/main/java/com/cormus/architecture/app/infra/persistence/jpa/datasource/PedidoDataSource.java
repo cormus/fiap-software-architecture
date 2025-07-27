@@ -73,7 +73,7 @@ public class PedidoDataSource implements com.cormus.architecture.app.domain.comm
             pedidoEntity = this.pedidoRepository.getReferenceById(pedido.getId());
             pedidoEntity.setStatus_pagamento(pedido.getStatus_pagamento());
         } catch (Exception e){
-            System.out.println(e);
+            return null;
         }
 
         return PedidoConverter.pedidoEntityToPedido(pedidoEntity);

@@ -30,6 +30,12 @@ public class PedidoRestController {
         return ResponseEntity.ok(pedidoController.listar());
     }
 
+    @GetMapping("/{idPedido}")
+    public ResponseEntity<PedidoCadastradoDTO> pedido(@PathVariable Long idPedido){
+        PedidoController pedidoController = new PedidoController(this.pedidoDataSource);
+        return ResponseEntity.ok(pedidoController.pedidoPorId(idPedido));
+    }
+
     @PutMapping("/status")
     @Transactional
     public ResponseEntity statusPedidoAtualizar(@RequestBody @Valid PedidoAtualizarStatusRequest status) {
