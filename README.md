@@ -1,15 +1,15 @@
 
-# Pós-Graduaçã em Software Architecture
+# Pós-Graduaçã em Software Architecture 
 
 Este projeto é uma API RESTful desenvolvida em Spring Boot, projetada para gerenciar os pedidos de uma lanchonete. O sistema permite criar, atualizar, listar e excluir produtos, bem como buscar produtos por categoria, realizar checkout de pagamento e listar os pedidos. A aplicação é containerizada com Docker, garantindo portabilidade e facilidade de implantação.
 
 Este projeto foi desenvolvido como parte do Tech Challenge da Pós-Graduação em Arquitetura de Software, com foco em boas práticas de desenvolvimento, design orientado a microsserviços e escalabilidade.
 
 
-### Tecnologias utilizadas:
+### Tecnologias utilizadas: 
 
 - Java 17
-- Framework: Spring Boot
+- Framework: Spring Boot 
     - Spring Web  
     - Spring Validation
     - Spring Security
