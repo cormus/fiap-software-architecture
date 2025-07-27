@@ -33,6 +33,9 @@ jobs:
         chmod +x ./mvnw
         ./mvnw clean verify -Dspring.profiles.active=test
 
+    - name: Instalar xmllint
+      run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
     - name: Verificar cobertura mínima (80%)
       run: |
         COVERAGE=$(xmllint --xpath "string(//report/counter[@type='INSTRUCTION']/@covered)" target/site/jacoco/jacoco.xml)
@@ -46,6 +49,12 @@ jobs:
         else
           echo "✅ Cobertura satisfatória."
         fi
+
+    - name: Atualiza relatório testes
+      uses: actions/upload-artifact@v4
+      with:
+        name: cobertura-jacoco
+        path: target/site/jacoco/
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
