@@ -23,7 +23,7 @@ public class PagamentoRestController {
     PedidoDataSource pedidoDataSource;
 
     @GetMapping("/{idPedido}/status")
-    public ResponseEntity cadastrar(@PathVariable Long idPedido) {
+    public ResponseEntity status(@PathVariable Long idPedido) {
 
         PagamentoService pagamentoService = new PagamentoService();
 

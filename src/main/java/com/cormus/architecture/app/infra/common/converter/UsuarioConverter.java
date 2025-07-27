@@ -1,9 +1,7 @@
 package com.cormus.architecture.app.infra.common.converter;
 
 import com.cormus.architecture.app.domain.entity.Usuario;
-import com.cormus.architecture.app.infra.persistence.jpa.entity.EnderecoVO;
 import com.cormus.architecture.app.infra.persistence.jpa.entity.UsuarioEntity;
-import jakarta.persistence.Embedded;
 
 public class UsuarioConverter {
 

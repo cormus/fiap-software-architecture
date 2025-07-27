@@ -9,13 +9,16 @@ import java.util.List;
 public class PedidoPresenter {
 
     public static PedidoCadastradoDTO bind(Pedido pedido){
-        PedidoCadastradoDTO pedidoCadastradoDTO = new PedidoCadastradoDTO();
-        pedidoCadastradoDTO.setId(pedido.getId());
-        pedidoCadastradoDTO.setIdUsuario(pedido.getIdUsuario());
-        pedidoCadastradoDTO.setPedidoData(pedido.getPedidoData());
-        pedidoCadastradoDTO.setStatus(pedido.getStatus());
-        //pedidoCadastradoDTO.setItens(PedidoPresenter.listItemBind(pedido.getItens()));
-        return pedidoCadastradoDTO;
+        if(pedido != null) {
+            PedidoCadastradoDTO pedidoCadastradoDTO = new PedidoCadastradoDTO();
+            pedidoCadastradoDTO.setId(pedido.getId());
+            pedidoCadastradoDTO.setIdUsuario(pedido.getIdUsuario());
+            pedidoCadastradoDTO.setPedidoData(pedido.getPedidoData());
+            pedidoCadastradoDTO.setStatus(pedido.getStatus());
+            //pedidoCadastradoDTO.setItens(PedidoPresenter.listItemBind(pedido.getItens()));
+            return pedidoCadastradoDTO;
+        }
+        return null;
     }
 
     public  static CheckoutDTO bind(Pedido pedido, String qrCodeUrl){

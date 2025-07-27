@@ -11,12 +11,14 @@ public class PedidoConverter {
 
     public static Pedido pedidoEntityToPedido(PedidoEntity pedidoEntity ){
         Pedido pedido = new Pedido();
-        pedido.setId(pedidoEntity.getId());
-        pedido.setIdUsuario(pedidoEntity.getIdUsuario());
-        pedido.setPedidoData(pedidoEntity.getPedidoData());
-        pedido.setStatus(pedidoEntity.getStatus());
-        pedido.setStatus_pagamento(pedidoEntity.getStatus_pagamento());
-        pedido.setItens(PedidoItemConverter.pedidosItemEntityToPedidos(pedidoEntity.getItens()));
+        if(pedidoEntity != null) {
+            pedido.setId(pedidoEntity.getId());
+            pedido.setIdUsuario(pedidoEntity.getIdUsuario());
+            pedido.setPedidoData(pedidoEntity.getPedidoData());
+            pedido.setStatus(pedidoEntity.getStatus());
+            pedido.setStatus_pagamento(pedidoEntity.getStatus_pagamento());
+            pedido.setItens(PedidoItemConverter.pedidosItemEntityToPedidos(pedidoEntity.getItens()));
+        }
         return pedido;
     }
 

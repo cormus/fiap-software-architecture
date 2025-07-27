@@ -18,6 +18,10 @@ public class PedidoUseCase {
         this.pedidoGateway = pedidoGateway;
     }
 
+    public Pedido  pedidoPorId(Long idPedido){
+        return this.pedidoGateway.pedidoPorId(idPedido);
+    }
+
     public List<Pedido> pedidosListar(){
         List<Pedido> pedidos = this.pedidoGateway.listar();
 

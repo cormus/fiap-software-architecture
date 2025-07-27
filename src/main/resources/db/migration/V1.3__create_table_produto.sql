@@ -1,7 +1,6 @@
-CREATE TABLE IF NOT EXISTS `produto` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_categoria` int(11) NOT NULL,
-  `nome` varchar(30) NOT NULL,
-  `valor` double(11,2) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS produto (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_categoria INT NOT NULL,
+  nome VARCHAR(30) NOT NULL,
+  valor DECIMAL(11,2) NOT NULL
+);
