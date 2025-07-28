@@ -3,14 +3,60 @@ name: Deploy to AWS EKS
 env:
   AWS_REGION: us-east-2
   AWS_ASSUME_ROLE: arn:aws:iam::881307377501:role/github-actions-fiap-pipelike
-  #ECR_REGISTRY: 881307377501.dkr.ecr.us-east-2.amazonaws.com/cormus
   ECR_REPOSITORY: cormus
 
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 18
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '18'
+
+      - name: Build Spring Boot app
+        run: |
+          chmod +x ./mvnw
+          ./mvnw clean verify -Dspring.profiles.active=test
+
+      - name: Instalar xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Verificar cobertura mínima (80%)
+        run: |
+          COVERAGE=$(xmllint --xpath "string(//report/counter[@type='INSTRUCTION']/@covered)" target/site/jacoco/jacoco.xml)
+          MISSED=$(xmllint --xpath "string(//report/counter[@type='INSTRUCTION']/@missed)" target/site/jacoco/jacoco.xml)
+          TOTAL=$(echo "$COVERAGE + $MISSED" | bc)
+          RATIO=$(echo "scale=2; $COVERAGE / $TOTAL" | bc)
+          echo "Cobertura de código: $(echo "$RATIO * 100" | bc)%"
+          if (( $(echo "$RATIO < 0.80" | bc -l) )); then
+            echo "❌ Cobertura abaixo de 80%. Falhando pipeline."
+            exit 1
+          else
+            echo "✅ Cobertura satisfatória."
+          fi
+
+      - name: Atualiza relatório testes
+        uses: actions/upload-artifact@v4
+        with:
+          name: cobertura-jacoco
+          path: target/site/jacoco/
+
   deploy:
     runs-on: ubuntu-latest
 
@@ -31,30 +77,7 @@ jobs:
     - name: Build Spring Boot app
       run: |
         chmod +x ./mvnw
-        ./mvnw clean verify -Dspring.profiles.active=test
-
-    - name: Instalar xmllint
-      run: sudo apt-get update && sudo apt-get install -y libxml2-utils
-
-    - name: Verificar cobertura mínima (80%)
-      run: |
-        COVERAGE=$(xmllint --xpath "string(//report/counter[@type='INSTRUCTION']/@covered)" target/site/jacoco/jacoco.xml)
-        MISSED=$(xmllint --xpath "string(//report/counter[@type='INSTRUCTION']/@missed)" target/site/jacoco/jacoco.xml)
-        TOTAL=$(echo "$COVERAGE + $MISSED" | bc)
-        RATIO=$(echo "scale=2; $COVERAGE / $TOTAL" | bc)
-        echo "Cobertura de código: $(echo "$RATIO * 100" | bc)%"
-        if (( $(echo "$RATIO < 0.80" | bc -l) )); then
-          echo "❌ Cobertura abaixo de 80%. Falhando pipeline."
-          exit 1
-        else
-          echo "✅ Cobertura satisfatória."
-        fi
-
-    - name: Atualiza relatório testes
-      uses: actions/upload-artifact@v4
-      with:
-        name: cobertura-jacoco
-        path: target/site/jacoco/
+        ./mvnw clean package -DskipTests
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
