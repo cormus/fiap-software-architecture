@@ -58,6 +58,8 @@ jobs:
           path: target/site/jacoco/
 
   deploy:
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
 
     permissions:
